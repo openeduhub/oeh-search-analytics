@@ -8,3 +8,13 @@ type Query {
   """
   dummy: String!
 }
+
+type Mutation {
+  """Report a search request being done by a user."""
+  searchRequest(sessionId: String!, searchString: String, page: Int!, filters: String, filtersSidebarIsVisible: Boolean!, language: Language!, numberResults: Int!): Boolean
+}
+
+enum Language {
+  de
+  en
+}
