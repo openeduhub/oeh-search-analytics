@@ -1,0 +1,10 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  """
+  Returns an empty string. GraphQL requires at least one Query to be defined.
+  """
+  dummy: String!
+}
