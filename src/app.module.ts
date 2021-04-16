@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { DummyResolver } from './dummy/dummy.resolver';
-import { SearchRequestResolver } from './search-request/search-request.resolver';
-import { ElasticSearchService } from './elastic-search/elastic-search.service';
 import * as Joi from 'joi';
+import { join } from 'path';
+import { ElasticSearchService } from './elastic-search/elastic-search.service';
+import { DummyResolver } from './resolvers//dummy/dummy.resolver';
+import { OpenSessionResolver } from './resolvers/open-session/open-session.resolver';
+import { ResultClickResolver } from './resolvers/result-click/result-click.resolver';
+import { SearchRequestResolver } from './resolvers/search-request/search-request.resolver';
 
 @Module({
     imports: [
@@ -21,7 +21,14 @@ import * as Joi from 'joi';
             }),
         }),
     ],
-    controllers: [AppController],
-    providers: [AppService, DummyResolver, SearchRequestResolver, ElasticSearchService],
+    controllers: [],
+    providers: [
+        DummyResolver,
+        SearchRequestResolver,
+        ElasticSearchService,
+        OpenSessionResolver,
+        ResultClickResolver,
+        // LogRequestsPlugin,
+    ],
 })
 export class AppModule {}

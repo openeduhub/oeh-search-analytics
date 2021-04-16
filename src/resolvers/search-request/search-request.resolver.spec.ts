@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../app.module';
-import { Language } from './models/language.model';
+import { Language } from '../language.model';
 import { SearchRequestResolver } from './search-request.resolver';
 
 describe('SearchRequestResolver', () => {
