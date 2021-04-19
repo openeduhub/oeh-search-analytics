@@ -27,6 +27,8 @@ describe('SearchRequestResolver', () => {
             page: 0,
             searchString: '',
             sessionId: '',
+            screenWidth: 0,
+            screenHeight: 0,
         });
     });
 });

@@ -1,32 +1,30 @@
 import { ArgsType, Field, Int } from '@nestjs/graphql';
 import { IsJSON } from 'class-validator';
+import { GeneralArgs } from '../../../models/general-args.model';
 import { Language } from '../../../models/language.model';
 import { ClickKind } from './click-kind.model';
 
 @ArgsType()
-export class ResultClickArgs {
+export class ResultClickArgs extends GeneralArgs {
     @Field()
-    sessionId: string;
-
-    @Field()
-    searchString: string;
+    searchString!: string;
 
     @Field(() => Int)
-    page: number;
+    page!: number;
 
     @Field()
     @IsJSON()
-    filters: string;
+    filters!: string;
 
     @Field()
-    filtersSidebarIsVisible: boolean;
+    filtersSidebarIsVisible!: boolean;
 
     @Field(() => Language)
-    language: Language;
+    language!: Language;
 
     @Field()
-    clickedResultId: string;
+    clickedResultId!: string;
 
     @Field(() => ClickKind)
-    clickKind: ClickKind;
+    clickKind!: ClickKind;
 }

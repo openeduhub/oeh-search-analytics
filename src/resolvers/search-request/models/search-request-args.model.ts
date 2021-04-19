@@ -1,28 +1,26 @@
 import { ArgsType, Field, Int } from '@nestjs/graphql';
 import { IsJSON } from 'class-validator';
+import { GeneralArgs } from '../../../models/general-args.model';
 import { Language } from '../../../models/language.model';
 
 @ArgsType()
-export class SearchRequestArgs {
+export class SearchRequestArgs extends GeneralArgs {
     @Field()
-    sessionId: string;
-
-    @Field()
-    searchString: string;
+    searchString!: string;
 
     @Field(() => Int)
-    page: number;
+    page!: number;
 
     @Field()
     @IsJSON()
-    filters: string;
+    filters!: string;
 
     @Field()
-    filtersSidebarIsVisible: boolean;
+    filtersSidebarIsVisible!: boolean;
 
     @Field(() => Language)
-    language: Language;
+    language!: Language;
 
     @Field(() => Int)
-    numberResults: number;
+    numberResults!: number;
 }

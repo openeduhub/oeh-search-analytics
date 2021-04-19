@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
-import { Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { ClientInformationArgs } from '../../models/client-information-args.model';
 import { ElasticSearchService } from '../../services/elastic-search/elastic-search.service';
 
 @Resolver()
@@ -11,9 +12,9 @@ export class OpenSessionResolver {
     @Mutation(() => String, {
         description: 'Return a fresh session ID.',
     })
-    async openSession(): Promise<string> {
+    async openSession(@Args() args: ClientInformationArgs): Promise<string> {
         const sessionId = this.generateSessionId();
-        const body = { action: 'open session', sessionId };
+        const body = { action: 'open session', sessionId, ...args };
         this.logger.log(body);
         await this.elasticSearchService.index(body);
         return sessionId;

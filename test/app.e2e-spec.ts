@@ -32,6 +32,8 @@ describe('AppController (e2e)', () => {
                 mutation {
                     searchRequest(
                         sessionId: ""
+                        screenWidth: 0
+                        screenHeight: 0
                         searchString: ""
                         page: 0
                         filters: "{}"
@@ -56,6 +58,8 @@ describe('AppController (e2e)', () => {
                 mutation {
                     searchRequest(
                         sessionId: ""
+                        screenWidth: 0
+                        screenHeight: 0
                         searchString: ""
                         page: 0
                         filters: "{\\"type\\":[\\"content\\"]}"
@@ -79,6 +83,8 @@ describe('AppController (e2e)', () => {
                 mutation {
                     searchRequest(
                         sessionId: ""
+                        screenWidth: 0
+                        screenHeight: 0
                         searchString: ""
                         page: 0
                         filters: "{\\"type\\":[\\"content\\"}"

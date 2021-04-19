@@ -11,6 +11,7 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
+    "strict": true,
     // This is needed when there are node_modules directories in parent directories of this
     // repository.
     "types": ["node", "jest"]
