@@ -1,8 +1,11 @@
+import { Logger } from '@nestjs/common';
 import { Mutation, Resolver } from '@nestjs/graphql';
 import { ElasticSearchService } from 'src/elastic-search/elastic-search.service';
 
 @Resolver()
 export class OpenSessionResolver {
+    private readonly logger = new Logger(OpenSessionResolver.name);
+
     constructor(private readonly elasticSearchService: ElasticSearchService) {}
 
     @Mutation(() => String, {
@@ -10,8 +13,9 @@ export class OpenSessionResolver {
     })
     async openSession(): Promise<string> {
         const sessionId = this.generateSessionId();
-        console.log('openSession', sessionId);
-        await this.elasticSearchService.index({ action: 'open session', sessionId });
+        const body = { action: 'open session', sessionId };
+        this.logger.log(body);
+        await this.elasticSearchService.index(body);
         return sessionId;
     }
 

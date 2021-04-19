@@ -1,9 +1,12 @@
+import { Logger } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { ElasticSearchService } from '../../elastic-search/elastic-search.service';
 import { SearchRequestArgs } from './models/search-request-args.model';
 
 @Resolver()
 export class SearchRequestResolver {
+    private readonly logger = new Logger(SearchRequestResolver.name);
+
     constructor(private readonly elasticSearchService: ElasticSearchService) {}
 
     @Mutation(() => Boolean, {
@@ -12,7 +15,7 @@ export class SearchRequestResolver {
     })
     async searchRequest(@Args() args: SearchRequestArgs): Promise<void> {
         const body = this.prepareBody(args);
-        console.log('searchRequest', body);
+        this.logger.log(body);
         return this.elasticSearchService.index(body);
     }
 

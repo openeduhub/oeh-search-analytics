@@ -1,9 +1,12 @@
+import { Logger } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { ElasticSearchService } from 'src/elastic-search/elastic-search.service';
 import { ResultClickArgs } from './models/result-click-args.model';
 
 @Resolver()
 export class ResultClickResolver {
+    private readonly logger = new Logger(ResultClickResolver.name);
+
     constructor(private readonly elasticSearchService: ElasticSearchService) {}
 
     @Mutation(() => Boolean, {
@@ -12,7 +15,7 @@ export class ResultClickResolver {
     })
     async resultClick(@Args() args: ResultClickArgs): Promise<void> {
         const body = this.prepareBody(args);
-        console.log('resultClick', body);
+        this.logger.log(body);
         return this.elasticSearchService.index(body);
     }
 

@@ -29,7 +29,6 @@ import { SearchRequestResolver } from './resolvers/search-request/search-request
         ElasticSearchService,
         OpenSessionResolver,
         ResultClickResolver,
-        // LogRequestsPlugin,
     ],
 })
 export class AppModule {}
