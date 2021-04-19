@@ -9,8 +9,13 @@ export class ElasticSearchService {
     private readonly elasticSearchIndex: string;
 
     constructor(configService: ConfigService) {
-        this.client = new Client({ node: configService.get<string>('ELASTICSEARCH_URL') });
-        this.elasticSearchIndex = configService.get<string>('ELASTICSEARCH_INDEX');
+        this.client = new Client({
+            node: configService.get<string>('ELASTICSEARCH_URL', 'http://localhost:9200'),
+        });
+        this.elasticSearchIndex = configService.get<string>(
+            'ELASTICSEARCH_INDEX',
+            'oeh-search-analytics',
+        );
     }
 
     async index(body: Index<Record<string, any>>['body']): Promise<void> {

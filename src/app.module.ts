@@ -16,8 +16,9 @@ import { SearchRequestResolver } from './resolvers/search-request/search-request
         }),
         ConfigModule.forRoot({
             validationSchema: Joi.object({
-                ELASTICSEARCH_URL: Joi.string().uri().required(),
-                ELASTICSEARCH_INDEX: Joi.string().required(),
+                PORT: Joi.number(),
+                ELASTICSEARCH_URL: Joi.string().uri(),
+                ELASTICSEARCH_INDEX: Joi.string(),
             }),
         }),
     ],
