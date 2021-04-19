@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../app.module';
-import { Language } from '../language.model';
+import { AppModule } from '../../app.module';
+import { Language } from '../../models/language.model';
 import { SearchRequestResolver } from './search-request.resolver';
 
 describe('SearchRequestResolver', () => {
@@ -20,7 +20,7 @@ describe('SearchRequestResolver', () => {
 
     it('should index a search request', async () => {
         await resolver.searchRequest({
-            filters: '',
+            filters: '{}',
             filtersSidebarIsVisible: false,
             language: Language.de,
             numberResults: 42,

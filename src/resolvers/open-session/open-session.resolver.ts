@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { Mutation, Resolver } from '@nestjs/graphql';
-import { ElasticSearchService } from 'src/elastic-search/elastic-search.service';
+import { ElasticSearchService } from '../../services/elastic-search/elastic-search.service';
 
 @Resolver()
 export class OpenSessionResolver {

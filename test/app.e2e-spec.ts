@@ -16,10 +16,6 @@ describe('AppController (e2e)', () => {
         await app.init();
     });
 
-    it('/ (GET)', () => {
-        return request(app.getHttpServer()).get('/').expect(200).expect('Hello World!');
-    });
-
     it('dummy query', () => {
         return request(app.getHttpServer())
             .post('/graphql')
@@ -36,9 +32,9 @@ describe('AppController (e2e)', () => {
                 mutation {
                     searchRequest(
                         sessionId: ""
-                        searchString: null
+                        searchString: ""
                         page: 0
-                        filters: null
+                        filters: "{}"
                         filtersSidebarIsVisible: true
                         language: en
                         numberResults: 142494
@@ -46,14 +42,12 @@ describe('AppController (e2e)', () => {
                 }
             `,
         };
-        return (
-            request(app.getHttpServer())
-                .post('/graphql')
-                .send(body)
-                // .on('error', (err) => console.log(JSON.parse(err.response.text)))
-                .expect(200)
-                .expect({ data: { searchRequest: null } })
-        );
+        return request(app.getHttpServer())
+            .post('/graphql')
+            .send(body)
+            .on('error', (err) => console.log(JSON.parse(err.response.text)))
+            .expect(200)
+            .expect({ data: { searchRequest: null } });
     });
 
     it('search-request filters', () => {
@@ -62,7 +56,7 @@ describe('AppController (e2e)', () => {
                 mutation {
                     searchRequest(
                         sessionId: ""
-                        searchString: null
+                        searchString: ""
                         page: 0
                         filters: "{\\"type\\":[\\"content\\"]}"
                         filtersSidebarIsVisible: true
@@ -85,7 +79,7 @@ describe('AppController (e2e)', () => {
                 mutation {
                     searchRequest(
                         sessionId: ""
-                        searchString: null
+                        searchString: ""
                         page: 0
                         filters: "{\\"type\\":[\\"content\\"}"
                         filtersSidebarIsVisible: true

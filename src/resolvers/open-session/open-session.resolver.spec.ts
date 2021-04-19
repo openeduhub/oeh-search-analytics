@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { AppModule } from '../../app.module';
 import { OpenSessionResolver } from './open-session.resolver';
 
 describe('OpenSessionResolver', () => {
@@ -6,7 +7,7 @@ describe('OpenSessionResolver', () => {
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            providers: [OpenSessionResolver],
+            imports: [AppModule],
         }).compile();
 
         resolver = module.get<OpenSessionResolver>(OpenSessionResolver);

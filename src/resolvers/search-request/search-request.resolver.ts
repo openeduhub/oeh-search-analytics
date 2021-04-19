@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { ElasticSearchService } from '../../elastic-search/elastic-search.service';
+import { ElasticSearchService } from '../../services/elastic-search/elastic-search.service';
 import { SearchRequestArgs } from './models/search-request-args.model';
 
 @Resolver()

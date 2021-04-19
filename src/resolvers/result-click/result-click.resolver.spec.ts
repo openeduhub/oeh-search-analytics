@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { AppModule } from '../../app.module';
 import { ResultClickResolver } from './result-click.resolver';
 
 describe('ResultClickResolver', () => {
@@ -6,7 +7,7 @@ describe('ResultClickResolver', () => {
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            providers: [ResultClickResolver],
+            imports: [AppModule],
         }).compile();
 
         resolver = module.get<ResultClickResolver>(ResultClickResolver);

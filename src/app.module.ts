@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import * as Joi from 'joi';
 import { join } from 'path';
-import { ElasticSearchService } from './elastic-search/elastic-search.service';
+import { ElasticSearchService } from './services/elastic-search/elastic-search.service';
 import { DummyResolver } from './resolvers//dummy/dummy.resolver';
 import { OpenSessionResolver } from './resolvers/open-session/open-session.resolver';
 import { ResultClickResolver } from './resolvers/result-click/result-click.resolver';
