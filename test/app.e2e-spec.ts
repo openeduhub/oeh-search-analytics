@@ -34,6 +34,7 @@ describe('AppController (e2e)', () => {
                         sessionId: ""
                         screenWidth: 0
                         screenHeight: 0
+                        userAgent: "test agent"
                         searchString: ""
                         page: 0
                         filters: "{}"
@@ -60,6 +61,7 @@ describe('AppController (e2e)', () => {
                         sessionId: ""
                         screenWidth: 0
                         screenHeight: 0
+                        userAgent: "test agent"
                         searchString: ""
                         page: 0
                         filters: "{\\"type\\":[\\"content\\"]}"
@@ -85,6 +87,7 @@ describe('AppController (e2e)', () => {
                         sessionId: ""
                         screenWidth: 0
                         screenHeight: 0
+                        userAgent: "test agent"
                         searchString: ""
                         page: 0
                         filters: "{\\"type\\":[\\"content\\"}"

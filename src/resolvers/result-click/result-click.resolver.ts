@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { EduSharingService } from 'src/services/edu-sharing/edu-sharing.service';
+import { EduSharingService } from '../../services/edu-sharing/edu-sharing.service';
 import { ElasticSearchService } from '../../services/elastic-search/elastic-search.service';
 import { ResultClickArgs } from './models/result-click-args.model';
 

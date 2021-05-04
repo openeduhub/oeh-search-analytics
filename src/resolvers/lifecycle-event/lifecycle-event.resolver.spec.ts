@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { AppModule } from '../../app.module';
 import { LifecycleEventResolver } from './lifecycle-event.resolver';
 
 describe('LifecycleEventResolver', () => {
@@ -6,7 +7,7 @@ describe('LifecycleEventResolver', () => {
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            providers: [LifecycleEventResolver],
+            imports: [AppModule],
         }).compile();
 
         resolver = module.get<LifecycleEventResolver>(LifecycleEventResolver);

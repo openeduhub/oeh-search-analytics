@@ -29,6 +29,7 @@ describe('SearchRequestResolver', () => {
             sessionId: '',
             screenWidth: 0,
             screenHeight: 0,
+            userAgent: 'test agent',
         });
     });
 });
