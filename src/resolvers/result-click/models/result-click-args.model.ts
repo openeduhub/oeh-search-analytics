@@ -1,7 +1,6 @@
 import { ArgsType, Field, Int } from '@nestjs/graphql';
 import { IsJSON } from 'class-validator';
 import { GeneralArgs } from '../../../models/general-args.model';
-import { Language } from '../../../models/language.model';
 import { ClickKind } from './click-kind.model';
 
 @ArgsType()
@@ -19,11 +18,9 @@ export class ResultClickArgs extends GeneralArgs {
     @Field()
     filtersSidebarIsVisible!: boolean;
 
-    @Field(() => Language)
-    language!: Language;
-
     @Field()
-    clickedResultId!: string;
+    @IsJSON()
+    clickedResult!: string;
 
     @Field(() => ClickKind)
     clickKind!: ClickKind;

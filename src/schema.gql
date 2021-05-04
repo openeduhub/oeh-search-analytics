@@ -11,13 +11,16 @@ type Query {
 
 type Mutation {
   """Report a search request being done by a user."""
-  searchRequest(sessionId: String!, screenWidth: Int!, screenHeight: Int!, searchString: String!, page: Int!, filters: String!, filtersSidebarIsVisible: Boolean!, language: Language!, numberResults: Int!): Boolean
+  searchRequest(sessionId: String!, userAgent: String!, screenWidth: Int!, screenHeight: Int!, language: Language!, searchString: String!, page: Int!, filters: String!, filtersSidebarIsVisible: Boolean!, numberResults: Int!): Boolean
 
   """Return a fresh session ID."""
-  openSession(screenWidth: Int!, screenHeight: Int!): String!
+  openSession(userAgent: String!, screenWidth: Int!, screenHeight: Int!, language: Language!): String!
 
   """Report result clicked by the user."""
-  resultClick(sessionId: String!, screenWidth: Int!, screenHeight: Int!, searchString: String!, page: Int!, filters: String!, filtersSidebarIsVisible: Boolean!, language: Language!, clickedResultId: String!, clickKind: ClickKind!): Boolean
+  resultClick(sessionId: String!, userAgent: String!, screenWidth: Int!, screenHeight: Int!, language: Language!, searchString: String!, page: Int!, filters: String!, filtersSidebarIsVisible: Boolean!, clickedResult: String!, clickKind: ClickKind!): Boolean
+
+  """Report a lifecycle state change of the web page."""
+  lifecycleEvent(sessionId: String!, userAgent: String!, screenWidth: Int!, screenHeight: Int!, language: Language!, event: LifecycleEvent!, state: String!): Boolean
 }
 
 enum Language {
@@ -29,4 +32,9 @@ enum ClickKind {
   click
   middleClick
   contextmenu
+}
+
+enum LifecycleEvent {
+  visibilitychange
+  pagehide
 }

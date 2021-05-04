@@ -18,9 +18,6 @@ export class SearchRequestArgs extends GeneralArgs {
     @Field()
     filtersSidebarIsVisible!: boolean;
 
-    @Field(() => Language)
-    language!: Language;
-
     @Field(() => Int)
     numberResults!: number;
 }

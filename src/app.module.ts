@@ -1,13 +1,15 @@
-import { Module } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import * as Joi from 'joi';
 import { join } from 'path';
-import { ElasticSearchService } from './services/elastic-search/elastic-search.service';
 import { DummyResolver } from './resolvers//dummy/dummy.resolver';
 import { OpenSessionResolver } from './resolvers/open-session/open-session.resolver';
 import { ResultClickResolver } from './resolvers/result-click/result-click.resolver';
 import { SearchRequestResolver } from './resolvers/search-request/search-request.resolver';
+import { EduSharingService } from './services/edu-sharing/edu-sharing.service';
+import { ElasticSearchService } from './services/elastic-search/elastic-search.service';
+import { LifecycleEventResolver } from './resolvers/lifecycle-event/lifecycle-event.resolver';
 
 @Module({
     imports: [
@@ -21,6 +23,7 @@ import { SearchRequestResolver } from './resolvers/search-request/search-request
                 ELASTICSEARCH_INDEX: Joi.string(),
             }),
         }),
+        HttpModule,
     ],
     controllers: [],
     providers: [
@@ -29,6 +32,8 @@ import { SearchRequestResolver } from './resolvers/search-request/search-request
         ElasticSearchService,
         OpenSessionResolver,
         ResultClickResolver,
+        EduSharingService,
+        LifecycleEventResolver,
     ],
 })
 export class AppModule {}

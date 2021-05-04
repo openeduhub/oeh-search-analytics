@@ -54,8 +54,9 @@ The app can be configured with
 
 Available options are:
 
-| Variable            | Description                                                    | Default value         |
-| ------------------- | -------------------------------------------------------------- | --------------------- |
-| PORT                | HTTP Port on which to expose this service                      | 3000                  |
-| ELASTICSEARCH_URL   | Root URL where this service can reach the ElasticSearch server | http://localhost:9200 |
-| ELASTICSEARCH_INDEX | ElasticSearch index to query                                   | oeh-search-analytics  |
+| Variable            | Description                                                    | Default value                                |
+| ------------------- | -------------------------------------------------------------- | -------------------------------------------- |
+| PORT                | HTTP Port on which to expose this service                      | 3000                                         |
+| ELASTICSEARCH_URL   | Root URL where this service can reach the ElasticSearch server | http://localhost:9200                        |
+| ELASTICSEARCH_INDEX | ElasticSearch index to query                                   | oeh-search-analytics                         |
+| EDU_SHARING_URL     | Root URL where this service can reach the Edu-Sharing server   | https://redaktion.openeduhub.net/edu-sharing |

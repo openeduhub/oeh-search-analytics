@@ -1,13 +1,14 @@
-import { Logger } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { EduSharingService } from 'src/services/edu-sharing/edu-sharing.service';
 import { ElasticSearchService } from '../../services/elastic-search/elastic-search.service';
 import { ResultClickArgs } from './models/result-click-args.model';
 
 @Resolver()
 export class ResultClickResolver {
-    private readonly logger = new Logger(ResultClickResolver.name);
-
-    constructor(private readonly elasticSearchService: ElasticSearchService) {}
+    constructor(
+        private readonly elasticSearchService: ElasticSearchService,
+        private readonly eduSharingService: EduSharingService,
+    ) {}
 
     @Mutation(() => Boolean, {
         description: 'Report result clicked by the user.',
@@ -15,15 +16,18 @@ export class ResultClickResolver {
     })
     async resultClick(@Args() args: ResultClickArgs): Promise<void> {
         const body = this.prepareBody(args);
-        this.logger.log(body);
-        return this.elasticSearchService.index(body);
+        await Promise.all([
+            this.elasticSearchService.index(body),
+            this.eduSharingService.reportView(body.clickedResult),
+        ]);
     }
 
     prepareBody(args: ResultClickArgs): Record<string, any> {
         return {
-            action: 'result click',
+            action: 'result_click',
             ...args,
             filters: JSON.parse(args.filters),
+            clickedResult: JSON.parse(args.clickedResult),
         };
     }
 }

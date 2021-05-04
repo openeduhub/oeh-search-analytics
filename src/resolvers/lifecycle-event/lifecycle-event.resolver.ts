@@ -1,25 +1,24 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { ElasticSearchService } from '../../services/elastic-search/elastic-search.service';
-import { SearchRequestArgs } from './models/search-request-args.model';
+import { LifecycleEventArgs } from './models/lifecycle-event-args.model';
 
 @Resolver()
-export class SearchRequestResolver {
+export class LifecycleEventResolver {
     constructor(private readonly elasticSearchService: ElasticSearchService) {}
 
     @Mutation(() => Boolean, {
-        description: 'Report a search request being done by a user.',
+        description: 'Report a lifecycle state change of the web page.',
         nullable: true,
     })
-    async searchRequest(@Args() args: SearchRequestArgs): Promise<void> {
+    async lifecycleEvent(@Args() args: LifecycleEventArgs): Promise<void> {
         const body = this.prepareBody(args);
         return this.elasticSearchService.index(body);
     }
 
-    prepareBody(args: SearchRequestArgs): Record<string, any> {
+    prepareBody(args: LifecycleEventArgs): Record<string, any> {
         return {
-            action: 'search_request',
+            action: 'lifecycle_event',
             ...args,
-            filters: JSON.parse(args.filters),
         };
     }
 }
