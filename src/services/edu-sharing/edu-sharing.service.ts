@@ -4,8 +4,8 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class EduSharingService {
     private readonly eduSharingUrl = this.configService.get<string>(
-        'EDU_SHARING_URL',
-        'https://redaktion.openeduhub.net/edu-sharing',
+        'EDUSHARING_URL',
+        'http://localhost:4200/edu-sharing',
     );
     private readonly restUrl = this.eduSharingUrl + '/rest';
     private readonly logger = new Logger(EduSharingService.name);
