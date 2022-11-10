@@ -1,4 +1,6 @@
-import { HttpModule, Module } from '@nestjs/common';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { HttpModule } from '@nestjs/axios';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import * as Joi from 'joi';
@@ -15,7 +17,8 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 @Module({
     imports: [
-        GraphQLModule.forRoot({
+        GraphQLModule.forRoot<ApolloDriverConfig>({
+            driver: ApolloDriver,
             autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
             // The browsers beacon API sends requests with `credentials` set to `include`. This is
             // not supported if Access-Control-Allow-Origin is `*` (NEST's default). We don't need
@@ -30,6 +33,7 @@ const devMode = process.env.NODE_ENV !== 'production';
                       maxAge: 86400,
                   }
                 : undefined,
+            cache: 'bounded',
         }),
         ConfigModule.forRoot({
             validationSchema: Joi.object({
